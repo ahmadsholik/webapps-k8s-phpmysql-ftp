@@ -1,0 +1,16 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: php-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: php-deployment
+  minReplicas: 2  # Jumlah minimum pod yang akan dijalankan
+  maxReplicas: 5  # Jumlah maksimum pod yang akan dijalankan
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 50  # Persentase penggunaan CPU target
