@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-app-config
+data:
+  database-url: mysql-service:3306
+  app-version: v1.0
+  mysql_root_password: Welcome@123
+  mysql_database: cbtshima
+  ftp_user: cbtshima
+  ftp_password: Welcome@123
