@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftp-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ftp-server
+  template:
+    metadata:
+      labels:
+        app: ftp-server
+    spec:
+      containers:
+      - name: ftp-server
+        image: kibatic/proftpd:latest
+        ports:
+        - containerPort: 21
+        - containerPort: 20
+        env:
+          - name: FTP_USER
+            valueFrom:
+                configMapKeyRef:
+                  name: web-app-config
+                  key: ftp_user
+          - name: FTP_PASSWORD
+            valueFrom:
+                configMapKeyRef:
+                  name: web-app-config
+                  key: ftp_password
+        volumeMounts:
+        - name: ftp-volume
+          mountPath: /ftp-data
+      volumes:
+      - name: ftp-volume
+        emptyDir: {}
