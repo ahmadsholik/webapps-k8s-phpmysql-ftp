@@ -4,7 +4,7 @@ metadata:
   name: web-ingress
 spec:
   rules:
-  - host: cbt.sma1pecangaan.sch.id  # Ganti dengan domain Anda
+  - host: cbt.smanca.my.id  # Ganti dengan domain Anda
     http:
       paths:
       - path: /
